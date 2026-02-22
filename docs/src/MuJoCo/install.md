@@ -1,8 +1,5 @@
 # 安装指南
-本指南旨在帮助不同系统的开发者快速搭建 MuJoCo 虚拟
-
-
-仿真环境，重点针对 Linux (Debian/WSL) 进行了优化。
+本指南旨在帮助不同系统的开发者快速搭建 MuJoCo 虚拟仿真环境，重点针对 Linux (Debian/WSL) 进行了优化。
 
 
 ## Linux 安装 (Debian/WSL)
