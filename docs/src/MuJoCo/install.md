@@ -1,13 +1,15 @@
 # 安装指南
+本指南旨在帮助不同系统的开发者快速搭建 MuJoCo 物理仿真环境，重点针对 Linux (Debian/WSL) 进行了优化。
 
-## Linux 安装 (Debian/WSL 专用)
+
+## Linux 安装 (Debian/WSL)
 
 1. 安装miniconda
 
-打开Linux系统任意终端，依次运行以下命令
+打开 Linux 系统终端，依次运行以下命令进行静默安装：
 
 ```shell
-# 1. 创建一个专门放 miniconda 的文件夹
+# 1. 创建 miniconda 安装文件夹
 mkdir -p ~/miniconda3
 
 # 2. 从官方源下载最新的 Linux 安装包 (大概 140MB，稍微等进度条跑完)
@@ -23,32 +25,32 @@ rm ~/miniconda3/miniconda.sh
 ~/miniconda3/bin/conda init bash
 ```
 
-2. 激活环境
+2. 激活并初始化 Conda
 
-上面的命令跑完之后，为了让配置立刻生效，你需要**刷新一下终端**
+为了让刚才的配置立刻生效，需要**刷新当前终端**
 
 ```
 source ~/.bashrc
 ```
 
-如果你操作正确，此时你终端命令行的最左边，应该会出现一个类似 **(base)** 的前缀！
+验证成功标志：终端命令行最左边出现 **(base)** 前缀！
 
 
-3. 创建项目空间
+3. 创建项目空间与接受协议 
 
-确认看到 **(base)** 之后，我们立刻为接下来的机器人仿真创建一个独立的 Python 3.10 环境：
-
+首先我们为接下来的仿真，创建一个独立的 Python 3.10 环境：
 
 ```shell
 # 创建一个名叫 mujoco_env 的环境，并指定 python 版本为 3.10
 conda create -n mujoco_env python=3.10 -y
 ```
-确认看到 (base) 之后，由于新版 Conda 的协议要求，我们需要先一键接受服务条款，否则会报错拦截：
+
+**重要提示**：由于新版 Conda 的合规要求，第一次下载包前需要接受服务条款，否则会触发报错。
 
 ![miniconda_bug](./images/conda_bug.png)
+请执行以下命令接受 Anaconda 官方服务条款
 
 ```shell
-# 接受 Anaconda 官方服务条款
 conda tos accept
 ```
 ![miniconda_bug](./images/conda_accept.png)
@@ -56,19 +58,22 @@ conda tos accept
 3. 激活环境
 
 ```shell
+# 激活进入专属环境
 conda activate mujoco_env
 ```
 
 4. 安装 MuJoCo
 
 ```shell
+# 安装 MuJoCo 引擎
 pip install mujoco
 ```
 
 
 
 
-5. 用代码测试
+5. 代码测试
+
 创建 test_mujoco.py 文件
 ```python
 import mujoco
@@ -99,7 +104,7 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
 python test_mujoco.py
 ```
 
-7. 弹出软件窗口为安装成功
+7. 若弹出包含红色方块的 3D 软件窗口，则表示安装成功
 
 ![linux_init](./images/linux_init.png)
 
