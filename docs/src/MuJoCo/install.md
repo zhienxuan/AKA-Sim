@@ -138,6 +138,8 @@ conda activate mujoco
 
 ```shell
 pip install mujoco
+pip install gymnasium
+pip install imageio
 ```
 
 4. 用代码测试
